@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>القرآن الكريم — El Sagrado Corán</title>
+<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#c9a84c;--gold2:#e8c97e;--gold3:#7a5c1e;--bg:#0a0a0f;--bg2:#111118;--bg3:#1a1a26;--bg4:#222230;--text:#f0ede6;--text2:#c4bfb2;--text3:#7a7468;--border:#2a2a3a}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+
+/* HEADER */
+header{position:sticky;top:0;z-index:100;background:rgba(10,10,15,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.header-inner{max-width:1200px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--gold),var(--gold3));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-name{font-size:13px;font-weight:700;color:var(--gold2)}
+.logo-ar{font-family:'Scheherazade New',serif;font-size:15px;color:var(--gold)}
+nav{display:flex;gap:2px}
+.nav-a{padding:7px 13px;font-size:13px;color:var(--text2);border-radius:8px;cursor:pointer;transition:.2s}
+.nav-a:hover{color:var(--gold2);background:rgba(201,168,76,.08)}
+.lang-toggle{display:flex;background:var(--bg3);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.lang-btn{padding:6px 14px;font-size:12px;font-weight:700;cursor:pointer;border:none;background:transparent;color:var(--text3);transition:.2s}
+.lang-btn.on{background:var(--gold);color:#000}
+
+/* HERO */
+.hero{min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:60px 20px;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(201,168,76,.08) 0%,transparent 70%)}
+.bismillah{font-family:'Scheherazade New',serif;font-size:clamp(26px,4vw,48px);color:var(--gold2);direction:rtl;margin-bottom:24px;line-height:1.5;text-shadow:0 0 40px rgba(201,168,76,.25)}
+.hero-title{font-size:clamp(28px,5vw,54px);font-weight:800;background:linear-gradient(135deg,#fff 30%,var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.hero-ar-title{font-family:'Scheherazade New',serif;font-size:clamp(20px,3.5vw,36px);color:var(--gold);margin-bottom:20px;direction:rtl;line-height:1.5}
+.hero-sub{font-size:15px;color:var(--text2);line-height:1.7;max-width:520px;margin:0 auto 32px}
+.hero-sub-ar{font-family:'Scheherazade New',serif;font-size:17px;color:var(--text2);direction:rtl;line-height:2;max-width:520px;margin:0 auto 32px}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-gold{padding:13px 28px;background:linear-gradient(135deg,var(--gold),var(--gold3));color:#000;font-weight:800;border:none;border-radius:10px;cursor:pointer;font-size:14px;transition:.2s}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,.3)}
+.btn-out{padding:13px 28px;background:transparent;color:var(--gold2);font-weight:700;border:1px solid rgba(201,168,76,.4);border-radius:10px;cursor:pointer;font-size:14px;transition:.2s}
+.btn-out:hover{background:rgba(201,168,76,.08)}
+.stats{display:flex;gap:32px;justify-content:center;margin-top:48px;flex-wrap:wrap}
+.stat-num{font-size:28px;font-weight:800;color:var(--gold2)}
+.stat-lbl{font-size:11px;color:var(--text3);margin-top:2px;text-transform:uppercase;letter-spacing:.04em}
+
+/* AYAH */
+.ayah-wrap{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:70px 20px;text-align:center}
+.ayah-inner{max-width:800px;margin:0 auto}
+.eyebrow{display:inline-block;font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;margin-bottom:24px;padding:5px 16px;border:1px solid rgba(201,168,76,.3);border-radius:20px}
+.eyebrow-ar{font-family:'Scheherazade New',serif;font-size:13px;direction:rtl;letter-spacing:0}
+.ayah-text{font-family:'Scheherazade New',serif;font-size:clamp(22px,4vw,40px);color:var(--gold2);direction:rtl;line-height:1.9;margin-bottom:24px}
+.ayah-tr{font-size:16px;color:var(--text2);line-height:1.9;font-style:italic;margin-bottom:16px}
+.ayah-tr-ar{font-family:'Scheherazade New',serif;font-size:17px;direction:rtl;font-style:normal;line-height:2}
+.ayah-ref{font-size:13px;color:var(--gold);font-weight:600}
+.dots{display:flex;gap:8px;justify-content:center;margin-top:24px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--border);cursor:pointer;transition:.2s}
+.dot.on{background:var(--gold);width:20px;border-radius:4px}
+
+/* SURAS LIST */
+.section{max-width:1200px;margin:0 auto;padding:60px 20px}
+.sec-header{text-align:center;margin-bottom:36px}
+.sec-title{font-size:clamp(22px,3.5vw,34px);font-weight:800;margin-bottom:6px}
+.sec-title-ar{font-family:'Scheherazade New',serif;font-size:clamp(20px,3vw,28px);color:var(--gold2);direction:rtl;line-height:1.5;margin-bottom:6px}
+.sec-sub{font-size:14px;color:var(--text2);line-height:1.7}
+.sec-sub-ar{font-family:'Scheherazade New',serif;font-size:16px;color:var(--text2);direction:rtl;line-height:2}
+.search-wrap{max-width:520px;margin:0 auto 32px;position:relative}
+.search-inp{width:100%;padding:13px 20px 13px 48px;background:var(--bg3);border:1px solid var(--border);border-radius:12px;color:var(--text);font-size:14px;outline:none;transition:.2s}
+.search-inp:focus{border-color:rgba(201,168,76,.5)}
+.search-inp::placeholder{color:var(--text3)}
+.search-ico{position:absolute;left:17px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--text3)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+.card{background:var(--bg3);border:1px solid var(--border);border-radius:13px;padding:18px;cursor:pointer;transition:.25s}
+.card:hover{border-color:rgba(201,168,76,.45);transform:translateY(-3px);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.card-num{width:34px;height:34px;background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:var(--gold)}
+.badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:20px}
+.mec{background:rgba(34,197,94,.1);color:#22c55e;border:1px solid rgba(34,197,94,.2)}
+.med{background:rgba(59,130,246,.1);color:#60a5fa;border:1px solid rgba(59,130,246,.2)}
+.card-ar{font-family:'Scheherazade New',serif;font-size:22px;color:var(--gold2);direction:rtl;text-align:right;margin-bottom:3px;line-height:1.3}
+.card-es{font-size:14px;font-weight:600;color:var(--text);margin-bottom:2px}
+.card-desc{font-size:12px;color:var(--text2);margin-top:8px;line-height:1.6}
+.card-footer{font-size:11px;color:var(--text3);margin-top:10px;padding-top:10px;border-top:1px solid var(--border)}
+
+/* SURA READER */
+.reader-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;overflow-y:auto;padding:20px}
+.reader-overlay.open{display:block}
+.reader-box{max-width:860px;margin:0 auto;background:var(--bg2);border:1px solid var(--border);border-radius:16px;overflow:hidden}
+.reader-header{padding:20px 24px;background:var(--bg3);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.reader-title-ar{font-family:'Scheherazade New',serif;font-size:26px;color:var(--gold2);direction:rtl}
+.reader-title-es{font-size:15px;font-weight:700;color:var(--text)}
+.reader-meta{font-size:12px;color:var(--text3)}
+.reader-close{width:36px;height:36px;background:var(--bg4);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:18px;color:var(--text2);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.reader-close:hover{color:var(--gold);border-color:var(--gold)}
+.reader-bismillah{font-family:'Scheherazade New',serif;font-size:28px;color:var(--gold2);direction:rtl;text-align:center;padding:28px 24px;border-bottom:1px solid var(--border);line-height:1.6}
+.reader-body{padding:8px 0}
+.ayah-row{padding:20px 24px;border-bottom:1px solid rgba(42,42,58,.6);transition:.2s}
+.ayah-row:hover{background:rgba(201,168,76,.03)}
+.ayah-row:last-child{border-bottom:none}
+.ayah-ar{font-family:'Scheherazade New',serif;font-size:clamp(20px,3vw,26px);color:var(--text);direction:rtl;text-align:right;line-height:2;margin-bottom:10px}
+.ayah-es{font-size:14px;color:var(--text2);line-height:1.8;padding-right:16px;border-right:2px solid rgba(201,168,76,.2)}
+.ayah-es-ar{font-size:14px;color:var(--text2);line-height:1.8;padding-left:16px;border-left:2px solid rgba(201,168,76,.2);direction:rtl;text-align:right}
+.ayah-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;border:1px solid rgba(201,168,76,.3);font-size:11px;font-weight:700;color:var(--gold);margin-bottom:10px;font-family:monospace}
+.loading{text-align:center;padding:60px 20px;color:var(--text3)}
+.loading-spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 16px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.reader-tabs{display:flex;gap:0;border-bottom:1px solid var(--border)}
+.r-tab{flex:1;padding:12px;text-align:center;cursor:pointer;font-size:13px;font-weight:600;color:var(--text3);border-bottom:2px solid transparent;transition:.2s}
+.r-tab.on{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* TEMAS */
+.temas-bg{background:var(--bg2);border-top:1px solid var(--border)}
+.temas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:12px}
+.tema{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:20px 16px;text-align:center;cursor:pointer;transition:.2s}
+.tema:hover{border-color:rgba(201,168,76,.4);background:var(--bg4)}
+.tema-ico{font-size:30px;margin-bottom:10px;display:block}
+.tema-tit{font-size:13px;font-weight:700;color:var(--text);margin-bottom:3px}
+.tema-ar{font-family:'Scheherazade New',serif;font-size:15px;color:var(--gold);direction:rtl;line-height:1.4}
+.tema-cnt{font-size:11px;color:var(--text3);margin-top:4px}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:36px 20px;text-align:center}
+.footer-txt{font-size:13px;color:var(--text3);margin-top:8px}
+
+/* LANG */
+.es{display:block}.ear{display:none}
+.lang-ar .es{display:none}.lang-ar .ear{display:block}
+.lang-ar{direction:rtl}
+.lang-ar .header-inner{direction:rtl}
+.lang-ar nav{flex-direction:row-reverse}
+.lang-ar .search-ico{left:auto;right:17px}
+.lang-ar .search-inp{padding:13px 48px 13px 20px}
+.lang-ar .ayah-es{padding-right:0;border-right:none;padding-left:16px;border-left:2px solid rgba(201,168,76,.2);direction:rtl;text-align:right}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+@media(max-width:768px){
+  nav{display:none}
+  .grid{grid-template-columns:1fr}
+  .stats{gap:20px}
+  .reader-overlay{padding:0}
+  .reader-box{border-radius:0;min-height:100vh}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo" onclick="volverHome()">
+      <div class="logo-icon">☽</div>
+      <div>
+        <div class="logo-name es">El Sagrado Corán</div>
+        <div class="logo-name ear" style="font-family:'Scheherazade New',serif;font-size:15px">القرآن الكريم</div>
+        <div style="font-family:'Scheherazade New',serif;font-size:13px;color:var(--text3)">
+          <span class="es">القرآن الكريم</span>
+          <span class="ear" style="font-family:'Segoe UI';font-size:11px;direction:ltr">El Sagrado Corán</span>
+        </div>
+      </div>
+    </div>
+    <nav>
+      <span class="nav-a es" onclick="ir('suras')">Suras</span>
+      <span class="nav-a ear" onclick="ir('suras')">السور</span>
+      <span class="nav-a es" onclick="ir('ayah-sec')">Versículos</span>
+      <span class="nav-a ear" onclick="ir('ayah-sec')">الآيات</span>
+      <span class="nav-a es" onclick="ir('temas')">Temas</span>
+      <span class="nav-a ear" onclick="ir('temas')">المواضيع</span>
+    </nav>
+    <div class="lang-toggle">
+      <button class="lang-btn on" id="b-es" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" id="b-ar" onclick="setLang('ar')">عر</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div>
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <h1 class="hero-title es">El Sagrado Corán</h1>
+    <div class="hero-ar-title ear">القرآن الكريم</div>
+    <div class="hero-ar-title es" style="font-size:clamp(18px,3vw,30px)">القرآن الكريم</div>
+    <h1 class="hero-title ear" style="font-size:clamp(22px,4vw,40px)">El Sagrado Corán</h1>
+    <p class="hero-sub es">Explora el libro sagrado del Islam. Lee las 114 suras con texto árabe original y traducción completa al español. Haz clic en cualquier sura para leerla.</p>
+    <p class="hero-sub-ar ear">استكشف كتاب الإسلام المقدس. اقرأ السور الـ١١٤ بالنص العربي الأصلي والترجمة الكاملة. انقر على أي سورة لقراءتها.</p>
+    <div class="ctas">
+      <button class="btn-gold" onclick="ir('suras')"><span class="es">📖 Explorar Suras</span><span class="ear">📖 استكشف السور</span></button>
+      <button class="btn-out" onclick="ir('ayah-sec')"><span class="es">✨ Versículo del día</span><span class="ear">✨ آية اليوم</span></button>
+    </div>
+    <div class="stats">
+      <div><div class="stat-num">114</div><div class="stat-lbl es">Suras</div><div class="stat-lbl ear" style="font-family:'Scheherazade New',serif;font-size:13px">سورة</div></div>
+      <div><div class="stat-num">6,236</div><div class="stat-lbl es">Versículos</div><div class="stat-lbl ear" style="font-family:'Scheherazade New',serif;font-size:13px">آية</div></div>
+      <div><div class="stat-num">30</div><div class="stat-lbl es">Partes (Yuz)</div><div class="stat-lbl ear" style="font-family:'Scheherazade New',serif;font-size:13px">جزء</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AYAH DEL DÍA -->
+<div class="ayah-wrap" id="ayah-sec">
+  <div class="ayah-inner">
+    <div class="eyebrow es">✦ Versículo Destacado ✦</div>
+    <div class="eyebrow eyebrow-ar ear">✦ الآية المميزة ✦</div>
+    <div class="ayah-text" id="a-arabic"></div>
+    <div class="ayah-tr es" id="a-tr-es"></div>
+    <div class="ayah-tr ayah-tr-ar ear" id="a-tr-ar"></div>
+    <div class="ayah-ref es" id="a-ref-es"></div>
+    <div class="ayah-ref ear" id="a-ref-ar" style="font-family:'Scheherazade New',serif;direction:rtl"></div>
+    <div class="dots" id="dots"></div>
+  </div>
+</div>
+
+<!-- SURAS -->
+<div id="suras">
+  <div class="section">
+    <div class="sec-header">
+      <div class="eyebrow es">Las 114 Suras</div>
+      <div class="eyebrow eyebrow-ar ear">١١٤ سورة</div>
+      <h2 class="sec-title es">Capítulos del Corán</h2>
+      <div class="sec-title-ar ear">سور القرآن الكريم</div>
+      <h2 class="sec-title ear" style="font-size:22px;color:var(--text2)">Capítulos del Corán</h2>
+      <p class="sec-sub es">Haz clic en cualquier sura para leer el texto árabe completo con traducción al español.</p>
+      <p class="sec-sub sec-sub-ar ear">انقر على أي سورة لقراءة النص العربي الكامل مع الترجمة الإسبانية.</p>
+    </div>
+    <div class="search-wrap">
+      <span class="search-ico">🔍</span>
+      <input class="search-inp" id="s-inp" placeholder="Buscar sura..." oninput="filtrar(this.value)">
+    </div>
+    <div class="grid" id="grid-suras"></div>
+  </div>
+</div>
+
+<!-- TEMAS -->
+<div class="temas-bg" id="temas">
+  <div class="section">
+    <div class="sec-header">
+      <div class="eyebrow es">Explorar por tema</div>
+      <div class="eyebrow eyebrow-ar ear">استكشف حسب الموضوع</div>
+      <h2 class="sec-title es">Temas del Corán</h2>
+      <div class="sec-title-ar ear">مواضيع القرآن</div>
+    </div>
+    <div class="temas-grid" id="grid-temas"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div style="font-size:28px">☽</div>
+  <div class="footer-txt es">El Sagrado Corán · القرآن الكريم · Plataforma educativa libre · Texto completo vía quran-json API</div>
+  <div class="footer-txt ear" style="font-family:'Scheherazade New',serif;direction:rtl;font-size:15px">القرآن الكريم · El Sagrado Corán · منصة تعليمية مفتوحة · النص الكامل عبر quran-json API</div>
+</footer>
+
+<!-- READER MODAL -->
+<div class="reader-overlay" id="reader">
+  <div class="reader-box">
+    <div class="reader-header">
+      <div>
+        <div class="reader-title-ar" id="r-title-ar"></div>
+        <div class="reader-title-es" id="r-title-es"></div>
+        <div class="reader-meta" id="r-meta"></div>
+      </div>
+      <button class="reader-close" onclick="cerrarReader()">✕</button>
+    </div>
+    <div class="reader-tabs">
+      <div class="r-tab on" id="tab-both" onclick="setTab('both')"><span class="es">Árabe + Español</span><span class="ear">عربي + إسباني</span></div>
+      <div class="r-tab" id="tab-ar" onclick="setTab('ar')"><span class="es">Solo Árabe</span><span class="ear">عربي فقط</span></div>
+      <div class="r-tab" id="tab-es" onclick="setTab('es')"><span class="es">Solo Español</span><span class="ear">إسباني فقط</span></div>
+    </div>
+    <div id="r-bismillah" class="reader-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+    <div class="reader-body" id="r-body"></div>
+  </div>
+</div>
+
+<script>
+var BASE_URL = 'https://cdn.jsdelivr.net/npm/quran-json@3.1.2/dist/chapters/';
+var lang = 'es';
+var ayahIdx = 0;
+var readerTab = 'both';
+var readerData = null;
+var cache = {};
+
+var SURAS = [
+  {n:1,ar:'الفاتحة',es:'Al-Fatiha — La Apertura',v:7,t:'mec',des_es:'La sura de apertura del Corán, recitada en cada oración. Contiene la esencia de toda la fe islámica.',des_ar:'سورة افتتاح القرآن، تُتلى في كل صلاة. تحتوي على جوهر الإيمان الإسلامي.'},
+  {n:2,ar:'البقرة',es:'Al-Baqara — La Vaca',v:286,t:'med',des_es:'La sura más larga del Corán. Contiene el Ayat al-Kursi y la jurisprudencia islámica fundamental.',des_ar:'أطول سور القرآن. تحتوي على آية الكرسي والفقه الإسلامي الأساسي.'},
+  {n:3,ar:'آل عمران',es:'Al Imran — La Familia de Imrán',v:200,t:'med',des_es:'Sobre la familia del profeta Jesús, la batalla de Uhud y la fe islámica.',des_ar:'تتحدث عن عائلة النبي عيسى وغزوة أحد والإيمان الإسلامي.'},
+  {n:4,ar:'النساء',es:'An-Nisa — Las Mujeres',v:176,t:'med',des_es:'Derechos de la mujer, herencia, matrimonio y justicia social.',des_ar:'حقوق المرأة والميراث والزواج والعدالة الاجتماعية.'},
+  {n:5,ar:'المائدة',es:'Al-Maida — La Mesa Servida',v:120,t:'med',des_es:'Contratos, alimentación halal y la alianza con Dios.',des_ar:'العقود والطعام الحلال والميثاق مع الله.'},
+  {n:6,ar:'الأنعام',es:'Al-Anam — El Ganado',v:165,t:'mec',des_es:'La unicidad de Dios y la refutación de la idolatría.',des_ar:'توحيد الله ودحض الوثنية والشرك.'},
+  {n:7,ar:'الأعراف',es:'Al-Araf — Los Lugares Elevados',v:206,t:'mec',des_es:'Historia de Adán, Noé, Moisés y otros profetas.',des_ar:'قصة آدم ونوح وموسى وغيرهم من الأنبياء.'},
+  {n:8,ar:'الأنفال',es:'Al-Anfal — El Botín',v:75,t:'med',des_es:'Revelada tras la batalla de Badr. Fe y sacrificio.',des_ar:'نزلت بعد غزوة بدر. الإيمان والتضحية.'},
+  {n:9,ar:'التوبة',es:'At-Tawba — El Arrepentimiento',v:129,t:'med',des_es:'Única sura sin Bismillah. Compromisos y arrepentimiento.',des_ar:'السورة الوحيدة بدون بسملة. العهود والتوبة.'},
+  {n:10,ar:'يونس',es:'Yunus — Jonás',v:109,t:'mec',des_es:'El profeta Jonás y los signos de Dios en la creación.',des_ar:'النبي يونس وآيات الله في الخلق.'},
+  {n:11,ar:'هود',es:'Hud — Hud',v:123,t:'mec',des_es:'El profeta Hud y las comunidades antiguas.',des_ar:'النبي هود والأقوام القديمة.'},
+  {n:12,ar:'يوسف',es:'Yusuf — José',v:111,t:'mec',des_es:'"La más bella de las historias": el profeta José y la paciencia.',des_ar:'"أحسن القصص": النبي يوسف والصبر.'},
+  {n:13,ar:'الرعد',es:'Ar-Rad — El Trueno',v:43,t:'med',des_es:'Los signos de Dios en el universo. El trueno glorifica a Allah.',des_ar:'آيات الله في الكون. الرعد يسبح بحمد الله.'},
+  {n:14,ar:'إبراهيم',es:'Ibrahim — Abraham',v:52,t:'mec',des_es:'La misión del profeta Abraham y sus oraciones.',des_ar:'مهمة النبي إبراهيم وأدعيته.'},
+  {n:15,ar:'الحجر',es:'Al-Hijr — La Roca',v:99,t:'mec',des_es:'El pueblo de Al-Hijr y la creación del ser humano.',des_ar:'أصحاب الحجر وخلق الإنسان.'},
+  {n:16,ar:'النحل',es:'An-Nahl — Las Abejas',v:128,t:'mec',des_es:'Los favores de Dios y la abeja como signo divino.',des_ar:'نعم الله والنحلة آية إلهية.'},
+  {n:17,ar:'الإسراء',es:'Al-Isra — El Viaje Nocturno',v:111,t:'mec',des_es:'El viaje nocturno del profeta Mahoma desde La Meca a Jerusalén.',des_ar:'رحلة النبي محمد ليلاً من مكة إلى القدس.'},
+  {n:18,ar:'الكهف',es:'Al-Kahf — La Caverna',v:110,t:'mec',des_es:'Los durmientes, Moisés y Al-Jidr, Dhu al-Qarnayn.',des_ar:'أصحاب الكهف وموسى والخضر وذو القرنين.'},
+  {n:19,ar:'مريم',es:'Maryam — María',v:98,t:'mec',des_es:'La historia de la Virgen María, madre de Jesús.',des_ar:'قصة السيدة مريم والدة عيسى عليهما السلام.'},
+  {n:20,ar:'طه',es:'Ta-Ha',v:135,t:'mec',des_es:'La historia de Moisés y la revelación en el monte Sinaí.',des_ar:'قصة موسى والوحي في جبل سيناء.'},
+  {n:21,ar:'الأنبياء',es:'Al-Anbiya — Los Profetas',v:112,t:'mec',des_es:'Las historias de los profetas desde Abraham hasta Jonás.',des_ar:'قصص الأنبياء من إبراهيم حتى يونس.'},
+  {n:23,ar:'المؤمنون',es:'Al-Muminun — Los Creyentes',v:118,t:'mec',des_es:'Las cualidades del creyente exitoso.',des_ar:'صفات المؤمن الناجح.'},
+  {n:24,ar:'النور',es:'An-Nur — La Luz',v:64,t:'med',des_es:'El versículo de la Luz. Ética y modestia islámica.',des_ar:'آية النور. الأخلاق والحشمة الإسلامية.'},
+  {n:25,ar:'الفرقان',es:'Al-Furqan — El Criterio',v:77,t:'mec',des_es:'El Corán como criterio entre la verdad y el error.',des_ar:'القرآن معيار الفرق بين الحق والباطل.'},
+  {n:26,ar:'الشعراء',es:'Ash-Shuara — Los Poetas',v:227,t:'mec',des_es:'Historias de Moisés, Abraham, Noé y otros profetas.',des_ar:'قصص موسى وإبراهيم ونوح وغيرهم.'},
+  {n:27,ar:'النمل',es:'An-Naml — Las Hormigas',v:93,t:'mec',des_es:'La historia del rey Salomón y la reina de Saba.',des_ar:'قصة النبي سليمان وملكة سبأ.'},
+  {n:28,ar:'القصص',es:'Al-Qasas — Los Relatos',v:88,t:'mec',des_es:'La historia completa de Moisés desde su nacimiento.',des_ar:'القصة الكاملة لموسى منذ ولادته.'},
+  {n:29,ar:'العنكبوت',es:'Al-Ankabut — La Araña',v:69,t:'mec',des_es:'La prueba de la fe. La araña como metáfora de la debilidad.',des_ar:'اختبار الإيمان. العنكبوت استعارة الضعف.'},
+  {n:30,ar:'الروم',es:'Ar-Rum — Los Romanos',v:60,t:'mec',des_es:'La predicción de la victoria de los romanos sobre los persas.',des_ar:'التنبؤ بانتصار الروم على الفرس.'},
+  {n:31,ar:'لقمان',es:'Luqman — Luqman',v:34,t:'mec',des_es:'La sabiduría de Luqman y sus consejos a su hijo.',des_ar:'حكمة لقمان ووصاياه لابنه.'},
+  {n:32,ar:'السجدة',es:'As-Sajda — La Postración',v:30,t:'mec',des_es:'Sobre la creación del ser humano y la resurrección.',des_ar:'حول خلق الإنسان والبعث.'},
+  {n:33,ar:'الأحزاب',es:'Al-Ahzab — Los Aliados',v:73,t:'med',des_es:'La batalla de los aliados. Las reglas del matrimonio profético.',des_ar:'غزوة الأحزاب. أحكام الزواج النبوي.'},
+  {n:34,ar:'سبأ',es:'Saba — Saba',v:54,t:'mec',des_es:'La historia del pueblo de Saba y la gratitud a Dios.',des_ar:'قصة قوم سبأ والشكر لله.'},
+  {n:35,ar:'فاطر',es:'Fatir — El Creador',v:45,t:'mec',des_es:'Dios como Creador del universo y sustentador de todo.',des_ar:'الله خالق الكون والمتكفل بكل شيء.'},
+  {n:36,ar:'يس',es:'Ya-Sin',v:83,t:'mec',des_es:'"El corazón del Corán". Resurrección y unicidad divina.',des_ar:'"قلب القرآن". البعث والتوحيد.'},
+  {n:37,ar:'الصافات',es:'As-Saffat — Los que se Ponen en Filas',v:182,t:'mec',des_es:'Los ángeles en filas. Historias de los profetas.',des_ar:'الملائكة في صفوف. قصص الأنبياء.'},
+  {n:38,ar:'ص',es:'Sad',v:88,t:'mec',des_es:'La historia de David y Salomón. El Corán como advertencia.',des_ar:'قصة داود وسليمان. القرآن تذكرة.'},
+  {n:39,ar:'الزمر',es:'Az-Zumar — Los Grupos',v:75,t:'mec',des_es:'La fe sincera y el arrepentimiento antes del Juicio Final.',des_ar:'الإيمان الصادق والتوبة قبل يوم الحساب.'},
+  {n:40,ar:'غافر',es:'Ghafir — El Perdonador',v:85,t:'mec',des_es:'Dios como Perdonador. El creyente de la familia del Faraón.',des_ar:'الله الغافر. مؤمن آل فرعون.'},
+  {n:41,ar:'فصلت',es:'Fussilat — Detallados',v:54,t:'mec',des_es:'Los versículos detallados del Corán. Los signos en la naturaleza.',des_ar:'الآيات المفصلة. الآيات في الطبيعة.'},
+  {n:42,ar:'الشورى',es:'Ash-Shura — La Consulta',v:53,t:'mec',des_es:'La consulta como principio islámico de gobierno.',des_ar:'الشورى كمبدأ إسلامي في الحكم.'},
+  {n:43,ar:'الزخرف',es:'Az-Zukhruf — Los Ornamentos',v:89,t:'mec',des_es:'La vanidad de los ornamentos del mundo. Jesús en el Islam.',des_ar:'زخرف الدنيا. عيسى في الإسلام.'},
+  {n:44,ar:'الدخان',es:'Ad-Dukhan — El Humo',v:59,t:'mec',des_es:'El humo como señal del Día del Juicio.',des_ar:'الدخان علامة من علامات يوم القيامة.'},
+  {n:45,ar:'الجاثية',es:'Al-Jathiya — De Rodillas',v:37,t:'mec',des_es:'La humanidad de rodillas ante Dios en el Día del Juicio.',des_ar:'البشرية جاثية أمام الله يوم القيامة.'},
+  {n:46,ar:'الأحقاف',es:'Al-Ahqaf — Las Dunas',v:35,t:'mec',des_es:'La historia del pueblo de Ad y las dunas de arena.',des_ar:'قصة قوم عاد والأحقاف.'},
+  {n:47,ar:'محمد',es:'Muhammad — Mahoma',v:38,t:'med',des_es:'El combate en el camino de Dios y la victoria.',des_ar:'القتال في سبيل الله والنصر.'},
+  {n:48,ar:'الفتح',es:'Al-Fath — La Victoria',v:29,t:'med',des_es:'La victoria de Hudaybiyyah. La expansión del Islam.',des_ar:'فتح الحديبية. انتشار الإسلام.'},
+  {n:49,ar:'الحجرات',es:'Al-Hujurat — Las Habitaciones',v:18,t:'med',des_es:'Ética social islámica: respeto, hermandad y no difamación.',des_ar:'الآداب الاجتماعية الإسلامية: الاحترام والأخوة.'},
+  {n:50,ar:'ق',es:'Qaf',v:45,t:'mec',des_es:'La resurrección y la omnisciencia de Dios.',des_ar:'البعث وعلم الله بكل شيء.'},
+  {n:51,ar:'الذاريات',es:'Adh-Dhariyat — Los Que Dispersan',v:60,t:'mec',des_es:'Los vientos y los signos de Dios. La historia de Abraham.',des_ar:'الرياح وآيات الله. قصة إبراهيم.'},
+  {n:52,ar:'الطور',es:'At-Tur — El Monte',v:49,t:'mec',des_es:'El juramento por el Monte Sinaí. El paraíso y el infierno.',des_ar:'القسم بجبل الطور. الجنة والنار.'},
+  {n:53,ar:'النجم',es:'An-Najm — La Estrella',v:62,t:'mec',des_es:'La revelación al profeta. La unicidad de Dios.',des_ar:'الوحي للنبي. توحيد الله.'},
+  {n:54,ar:'القمر',es:'Al-Qamar — La Luna',v:55,t:'mec',des_es:'La luna partida como milagro. Historias de los pueblos.',des_ar:'انشقاق القمر معجزة. قصص الأقوام.'},
+  {n:55,ar:'الرحمن',es:'Ar-Rahman — El Misericordioso',v:78,t:'med',des_es:'"¿Cuál de los favores de tu Señor negaréis?" La música del Corán.',des_ar:'"فبأي آلاء ربكما تكذبان؟" موسيقى القرآن.'},
+  {n:56,ar:'الواقعة',es:'Al-Waqia — El Acontecimiento',v:96,t:'mec',des_es:'El Día del Juicio y los tres grupos de personas.',des_ar:'يوم القيامة وأصناف الناس الثلاثة.'},
+  {n:57,ar:'الحديد',es:'Al-Hadid — El Hierro',v:29,t:'med',des_es:'Dar en el camino de Dios. La vida mundana como juego.',des_ar:'الإنفاق في سبيل الله. الحياة الدنيا لعب.'},
+  {n:58,ar:'المجادلة',es:'Al-Mujadila — La Mujer que Debate',v:22,t:'med',des_es:'Una mujer que debate con el profeta. Justicia divina.',des_ar:'امرأة تجادل النبي. العدالة الإلهية.'},
+  {n:59,ar:'الحشر',es:'Al-Hashr — El Exilio',v:24,t:'med',des_es:'El exilio de los judíos de Medina. Los nombres de Dios.',des_ar:'جلاء اليهود من المدينة. أسماء الله الحسنى.'},
+  {n:60,ar:'الممتحنة',es:'Al-Mumtahana — La Mujer que es Examinada',v:13,t:'med',des_es:'Las relaciones con los no creyentes. La fe de Abraham.',des_ar:'العلاقات مع غير المؤمنين. إيمان إبراهيم.'},
+  {n:61,ar:'الصف',es:'As-Saf — La Fila',v:14,t:'med',des_es:'El combate en el camino de Dios en filas organizadas.',des_ar:'القتال في سبيل الله في صفوف منظمة.'},
+  {n:62,ar:'الجمعة',es:'Al-Jumua — El Viernes',v:11,t:'med',des_es:'La oración del viernes y sus obligaciones.',des_ar:'صلاة الجمعة وواجباتها.'},
+  {n:63,ar:'المنافقون',es:'Al-Munafiqun — Los Hipócritas',v:11,t:'med',des_es:'Las características de los hipócritas y su peligro.',des_ar:'صفات المنافقين وخطرهم.'},
+  {n:64,ar:'التغابن',es:'At-Taghabun — El Engaño Mutuo',v:18,t:'med',des_es:'El Día del Juicio como el día del engaño mutuo revelado.',des_ar:'يوم القيامة يوم التغابن.'},
+  {n:65,ar:'الطلاق',es:'At-Talaq — El Divorcio',v:12,t:'med',des_es:'Las reglas del divorcio en el Islam.',des_ar:'أحكام الطلاق في الإسلام.'},
+  {n:66,ar:'التحريم',es:'At-Tahrim — La Prohibición',v:12,t:'med',des_es:'Lo que el profeta prohibió para sí mismo. Fe y arrepentimiento.',des_ar:'ما حرمه النبي على نفسه. الإيمان والتوبة.'},
+  {n:67,ar:'الملك',es:'Al-Mulk — El Dominio',v:30,t:'mec',des_es:'El dominio absoluto de Dios. Leerla cada noche protege.',des_ar:'الملك المطلق لله. قراءتها كل ليلة حماية.'},
+  {n:68,ar:'القلم',es:'Al-Qalam — La Pluma',v:52,t:'mec',des_es:'El juramento por la pluma. La moral del profeta.',des_ar:'القسم بالقلم. خُلق النبي العظيم.'},
+  {n:69,ar:'الحاقة',es:'Al-Haqqah — La Inevitable',v:52,t:'mec',des_es:'El Día del Juicio como la realidad inevitable.',des_ar:'يوم القيامة الحقيقة الحتمية.'},
+  {n:70,ar:'المعارج',es:'Al-Maarij — Los Grados',v:44,t:'mec',des_es:'Los ángeles ascienden a Dios. La paciencia ante el juicio.',des_ar:'الملائكة تعرج إلى الله. الصبر على الحكم.'},
+  {n:71,ar:'نوح',es:'Nuh — Noé',v:28,t:'mec',des_es:'La misión del profeta Noé y su pueblo.',des_ar:'مهمة النبي نوح وقومه.'},
+  {n:72,ar:'الجن',es:'Al-Jinn — Los Genios',v:28,t:'mec',des_es:'Los genios que escucharon el Corán y creyeron.',des_ar:'الجن الذين استمعوا للقرآن فآمنوا.'},
+  {n:73,ar:'المزمل',es:'Al-Muzzammil — El Envuelto',v:20,t:'mec',des_es:'La oración nocturna del profeta. La paciencia.',des_ar:'قيام الليل للنبي. الصبر.'},
+  {n:74,ar:'المدثر',es:'Al-Muddaththir — El Arropado',v:56,t:'mec',des_es:'La llamada al profeta a advertir a su pueblo.',des_ar:'الدعوة للنبي لإنذار قومه.'},
+  {n:75,ar:'القيامة',es:'Al-Qiyama — La Resurrección',v:40,t:'mec',des_es:'El Día de la Resurrección y el alma que se reprocha.',des_ar:'يوم القيامة والنفس اللوامة.'},
+  {n:76,ar:'الإنسان',es:'Al-Insan — El Ser Humano',v:31,t:'med',des_es:'La creación del ser humano y la recompensa de los justos.',des_ar:'خلق الإنسان وجزاء الصالحين.'},
+  {n:77,ar:'المرسلات',es:'Al-Mursalat — Los Enviados',v:50,t:'mec',des_es:'Los ángeles enviados. El Día del Juicio.',des_ar:'الملائكة المرسلة. يوم القيامة.'},
+  {n:78,ar:'النبأ',es:'An-Naba — La Noticia',v:40,t:'mec',des_es:'La gran noticia del Día de la Resurrección.',des_ar:'النبأ العظيم عن يوم القيامة.'},
+  {n:79,ar:'النازعات',es:'An-Naziat — Los que Arrancan',v:46,t:'mec',des_es:'Los ángeles que arrancan las almas. La resurrección.',des_ar:'الملائكة النازعات للأرواح. البعث.'},
+  {n:80,ar:'عبس',es:'Abasa — Frunció el Ceño',v:42,t:'mec',des_es:'El profeta frunce el ceño ante un ciego. Lección de humildad.',des_ar:'النبي يعبس أمام أعمى. درس التواضع.'},
+  {n:81,ar:'التكوير',es:'At-Takwir — El Enrollamiento',v:29,t:'mec',des_es:'El sol enrollado. Los signos del fin del mundo.',des_ar:'تكوير الشمس. علامات نهاية العالم.'},
+  {n:82,ar:'الانفطار',es:'Al-Infitar — El Quebrarse',v:19,t:'mec',des_es:'El cielo que se quiebra. El Día del Juicio.',des_ar:'السماء تنفطر. يوم القيامة.'},
+  {n:83,ar:'المطففين',es:'Al-Mutaffifin — Los que Defraudan',v:36,t:'mec',des_es:'Condena a quienes defraudan en la balanza.',des_ar:'ذم من يطففون في الميزان.'},
+  {n:84,ar:'الانشقاق',es:'Al-Inshiqaq — El Desgarramiento',v:25,t:'mec',des_es:'El cielo que se desgarra. La travesía humana hacia Dios.',des_ar:'انشقاق السماء. رحلة الإنسان إلى الله.'},
+  {n:85,ar:'البروج',es:'Al-Buruj — Las Constelaciones',v:22,t:'mec',des_es:'Los mártires de la zanja. La perseverancia.',des_ar:'شهداء الأخدود. الثبات والصبر.'},
+  {n:86,ar:'الطارق',es:'At-Tariq — El Astro Nocturno',v:17,t:'mec',des_es:'La estrella nocturna. El ser humano creado de agua.',des_ar:'النجم الثاقب. الإنسان خُلق من ماء.'},
+  {n:87,ar:'الأعلى',es:'Al-Ala — El Altísimo',v:19,t:'mec',des_es:'"Glorifica el nombre de tu Señor el Altísimo". La revelación.',des_ar:'"سبح اسم ربك الأعلى". الوحي.'},
+  {n:88,ar:'الغاشية',es:'Al-Ghashiya — La Cubierta',v:26,t:'mec',des_es:'El Día del Juicio que todo lo cubre. El paraíso.',des_ar:'يوم القيامة الغاشي. الجنة.'},
+  {n:89,ar:'الفجر',es:'Al-Fajr — El Alba',v:30,t:'mec',des_es:'El juramento por el alba. Los pueblos destruidos.',des_ar:'القسم بالفجر. الأقوام المهلكة.'},
+  {n:90,ar:'البلد',es:'Al-Balad — La Ciudad',v:20,t:'mec',des_es:'La Meca y la lucha del ser humano en la vida.',des_ar:'مكة المكرمة وكفاح الإنسان في الحياة.'},
+  {n:91,ar:'الشمس',es:'Ash-Shams — El Sol',v:15,t:'mec',des_es:'El juramento por el sol. La purificación del alma.',des_ar:'القسم بالشمس. تزكية النفس.'},
+  {n:92,ar:'الليل',es:'Al-Layl — La Noche',v:21,t:'mec',des_es:'La noche y el día como opuestos. La generosidad y la avaricia.',des_ar:'الليل والنهار متضادان. الكرم والبخل.'},
+  {n:93,ar:'الضحى',es:'Ad-Duha — La Mañana',v:11,t:'mec',des_es:'"Tu Señor no te ha abandonado." Consuelo al profeta.',des_ar:'"ما ودعك ربك وما قلى." عزاء النبي.'},
+  {n:94,ar:'الشرح',es:'As-Sharh — La Expansión',v:8,t:'mec',des_es:'"Junto a la dificultad hay alivio." Ocho versículos de esperanza.',des_ar:'"مع العسر يسراً." ثماني آيات من الأمل.'},
+  {n:95,ar:'التين',es:'At-Tin — El Higo',v:8,t:'mec',des_es:'El juramento por el higo y el olivo. La nobleza humana.',des_ar:'القسم بالتين والزيتون. شرف الإنسان.'},
+  {n:96,ar:'العلق',es:'Al-Alaq — El Coágulo',v:19,t:'mec',des_es:'Los primeros versículos revelados al profeta Mahoma.',des_ar:'أول ما نزل من القرآن على النبي محمد.'},
+  {n:97,ar:'القدر',es:'Al-Qadr — La Noche del Destino',v:5,t:'mec',des_es:'La noche más sagrada del año. Mejor que mil meses.',des_ar:'أقدس ليلة في السنة. خير من ألف شهر.'},
+  {n:98,ar:'البينة',es:'Al-Bayyina — La Prueba Clara',v:8,t:'med',des_es:'La prueba clara para el Pueblo del Libro.',des_ar:'البيئة الواضحة لأهل الكتاب.'},
+  {n:99,ar:'الزلزلة',es:'Az-Zalzala — El Terremoto',v:8,t:'med',des_es:'El terremoto del fin del mundo. El peso de las acciones.',des_ar:'زلزلة نهاية العالم. وزن الأعمال.'},
+  {n:100,ar:'العاديات',es:'Al-Adiyat — Los que Corren',v:11,t:'mec',des_es:'Los caballos de guerra. La ingratitud del ser humano.',des_ar:'خيول الحرب. كنود الإنسان.'},
+  {n:101,ar:'القارعة',es:'Al-Qariah — El Estruendo',v:11,t:'mec',des_es:'El gran estruendo del Día del Juicio.',des_ar:'القارعة يوم القيامة.'},
+  {n:102,ar:'التكاثر',es:'At-Takathur — La Acumulación',v:8,t:'mec',des_es:'La distracción de la acumulación de bienes. El juicio.',des_ar:'الانشغال بالتكاثر والتفاخر. الحساب.'},
+  {n:103,ar:'العصر',es:'Al-Asr — La Tarde',v:3,t:'mec',des_es:'El tiempo como testigo. La fe y las obras como salvación.',des_ar:'العصر شاهداً. الإيمان والعمل الصالح.'},
+  {n:104,ar:'الهمزة',es:'Al-Humaza — El Calumniador',v:9,t:'mec',des_es:'Condena al calumniador que acumula riqueza.',des_ar:'ذم الهمازة اللمازة الذي يجمع المال.'},
+  {n:105,ar:'الفيل',es:'Al-Fil — El Elefante',v:5,t:'mec',des_es:'La destrucción del ejército del elefante.',des_ar:'هلاك أصحاب الفيل.'},
+  {n:106,ar:'قريش',es:'Quraysh — Quraysh',v:4,t:'mec',des_es:'Los favores de Dios a la tribu Quraysh.',des_ar:'نعم الله على قريش.'},
+  {n:107,ar:'الماعون',es:'Al-Maun — Los Utensilios',v:7,t:'mec',des_es:'Condena a quien niega el juicio y a los hipócritas.',des_ar:'ذم من يكذب بالدين والمنافقين.'},
+  {n:108,ar:'الكوثر',es:'Al-Kawther — La Abundancia',v:3,t:'mec',des_es:'La fuente de abundancia concedida al profeta.',des_ar:'الخير الكثير الممنوح للنبي.'},
+  {n:109,ar:'الكافرون',es:'Al-Kafirun — Los Incrédulos',v:6,t:'mec',des_es:'"A vosotros vuestra religión, y a mí la mía." Tolerancia.',des_ar:'"لكم دينكم ولي دين." التسامح.'},
+  {n:110,ar:'النصر',es:'An-Nasr — La Victoria',v:3,t:'med',des_es:'La victoria del Islam y el perdón de Dios.',des_ar:'انتصار الإسلام ومغفرة الله.'},
+  {n:111,ar:'المسد',es:'Al-Masad — La Fibra',v:5,t:'mec',des_es:'Abu Lahab y su mujer. El rechazo al mensaje del profeta.',des_ar:'أبو لهب وامرأته. رفض رسالة النبي.'},
+  {n:112,ar:'الإخلاص',es:'Al-Ijlas — La Sinceridad',v:4,t:'mec',des_es:'La esencia del monoteísmo en 4 versículos. Vale un tercio del Corán.',des_ar:'جوهر التوحيد في 4 آيات. تعدل ثلث القرآن.'},
+  {n:113,ar:'الفلق',es:'Al-Falaq — El Alba',v:5,t:'mec',des_es:'Protección divina del mal de lo creado, la noche y la envidia.',des_ar:'الحماية الإلهية من شر المخلوقات والليل والحسد.'},
+  {n:114,ar:'الناس',es:'An-Nas — La Humanidad',v:6,t:'mec',des_es:'Última sura. Protección de Dios contra el susurro del maligno.',des_ar:'آخر سورة. الاستعاذة بالله من وسوسة الشيطان.'},
+];
+
+var AYAHS=[
+  {ar:'اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ',tr:'Lee en el nombre de tu Señor que creó.',ref_es:'Corán 96:1 — Al-Alaq',ref_ar:'القرآن ٩٦:١ — سورة العلق'},
+  {ar:'إِنَّ مَعَ الْعُسْرِ يُسْرًا',tr:'Ciertamente, junto a la dificultad hay alivio.',ref_es:'Corán 94:6 — As-Sharh',ref_ar:'القرآن ٩٤:٦ — سورة الشرح'},
+  {ar:'وَهُوَ مَعَكُمْ أَيْنَ مَا كُنتُمْ',tr:'Él está con vosotros donde quiera que estéis.',ref_es:'Corán 57:4 — Al-Hadid',ref_ar:'القرآن ٥٧:٤ — سورة الحديد'},
+  {ar:'حَسْبُنَا اللَّهُ وَنِعْمَ الْوَكِيلُ',tr:'Dios nos basta; ¡Qué excelente Guardián!',ref_es:'Corán 3:173 — Al Imran',ref_ar:'القرآن ٣:١٧٣ — سورة آل عمران'},
+  {ar:'وَمَن يَتَّقِ اللَّهَ يَجْعَل لَّهُ مَخْرَجًا',tr:'Y a quien teme a Dios, Él le dará una salida.',ref_es:'Corán 65:2 — At-Talaq',ref_ar:'القرآن ٦٥:٢ — سورة الطلاق'},
+];
+
+var TEMAS=[
+  {i:'🌙',es:'Fe y Creencia',ar:'الإيمان والعقيدة',n:480},
+  {i:'🕌',es:'Oración y Culto',ar:'الصلاة والعبادة',n:312},
+  {i:'💫',es:'Perdón y Misericordia',ar:'المغفرة والرحمة',n:267},
+  {i:'👨‍👩‍👧',es:'Familia y Sociedad',ar:'الأسرة والمجتمع',n:198},
+  {i:'⚖️',es:'Justicia y Ética',ar:'العدل والأخلاق',n:245},
+  {i:'🌿',es:'Naturaleza y Creación',ar:'الطبيعة والخلق',n:180},
+  {i:'📚',es:'Profetas e Historia',ar:'الأنبياء والتاريخ',n:410},
+  {i:'☪️',es:'El Más Allá',ar:'الآخرة',n:350},
+];
+
+// ── LANG ──
+function setLang(l){
+  lang=l;
+  document.documentElement.lang=l;
+  document.documentElement.dir=l==='ar'?'rtl':'ltr';
+  document.body.classList.toggle('lang-ar',l==='ar');
+  document.getElementById('b-es').classList.toggle('on',l==='es');
+  document.getElementById('b-ar').classList.toggle('on',l==='ar');
+  document.getElementById('s-inp').placeholder=l==='ar'?'ابحث عن سورة...':'Buscar sura...';
+  renderSuras(SURAS);
+  renderAyah();
+  renderTemas();
+}
+
+function ir(id){
+  var el=document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function volverHome(){
+  cerrarReader();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+// ── SURAS ──
+function renderSuras(list){
+  if(!list.length){
+    document.getElementById('grid-suras').innerHTML='<div style="color:var(--text3);text-align:center;padding:40px;grid-column:1/-1">'+(lang==='ar'?'لا توجد نتائج':'Sin resultados')+'</div>';
+    return;
+  }
+  document.getElementById('grid-suras').innerHTML=list.map(function(s){
+    var tl=s.t==='mec'?(lang==='ar'?'مكية':'Meca'):(lang==='ar'?'مدنية':'Medina');
+    var desc=lang==='ar'?s.des_ar:s.des_es;
+    var vl=lang==='ar'?'آية':'versículos';
+    return '<div class="card" onclick="abrirSura('+s.n+')">'
+      +'<div class="card-top"><div class="card-num">'+s.n+'</div><span class="badge '+(s.t==='mec'?'mec':'med')+'">'+tl+'</span></div>'
+      +'<div class="card-ar">'+s.ar+'</div>'
+      +'<div class="card-es">'+s.es+'</div>'
+      +'<div class="card-desc">'+desc+'</div>'
+      +'<div class="card-footer">'+s.v+' '+vl+' · '+(lang==='ar'?'انقر للقراءة ↗':'Clic para leer ↗')+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function filtrar(q){
+  if(!q){renderSuras(SURAS);return;}
+  var r=SURAS.filter(function(s){
+    return s.es.toLowerCase().includes(q.toLowerCase())||s.ar.includes(q)||String(s.n)===q;
+  });
+  renderSuras(r);
+}
+
+// ── READER ──
+function abrirSura(n){
+  var s=SURAS.find(function(x){return x.n===n;});
+  if(!s) return;
+  document.getElementById('r-title-ar').textContent=s.ar;
+  document.getElementById('r-title-es').textContent=s.es;
+  var vl=lang==='ar'?'آية':'versículos';
+  var tl=s.t==='mec'?(lang==='ar'?'مكية':'Meca'):(lang==='ar'?'مدنية':'Medina');
+  document.getElementById('r-meta').textContent=s.v+' '+vl+' · '+tl;
+  document.getElementById('r-body').innerHTML='<div class="loading"><div class="loading-spinner"></div>'+(lang==='ar'?'جارٍ التحميل...':'Cargando...')+'</div>';
+  document.getElementById('reader').classList.add('open');
+  document.body.style.overflow='hidden';
+  // Hide bismillah for At-Tawba (sura 9)
+  document.getElementById('r-bismillah').style.display=n===9?'none':'block';
+  cargarSura(n);
+}
+
+function cargarSura(n){
+  if(cache[n]){renderReader(cache[n]);return;}
+  var url=BASE_URL+'es/'+n+'.json';
+  fetch(url)
+    .then(function(r){return r.json();})
+    .then(function(d){cache[n]=d;renderReader(d);})
+    .catch(function(){
+      // fallback: load without translation
+      fetch(BASE_URL+n+'.json')
+        .then(function(r){return r.json();})
+        .then(function(d){cache[n]=d;renderReader(d);})
+        .catch(function(){
+          document.getElementById('r-body').innerHTML='<div style="padding:40px;text-align:center;color:var(--text3)">Error cargando la sura. Verifica tu conexión.</div>';
+        });
+    });
+}
+
+function renderReader(data){
+  var verses=data.verses||[];
+  var html=verses.map(function(v,i){
+    var num=i+1;
+    var ar=v.text||'';
+    var tr=v.translation||(v.transliteration||'');
+    return '<div class="ayah-row">'
+      +'<div class="ayah-num">'+num+'</div>'
+      +'<div class="ayah-ar">'+ar+'</div>'
+      +(tr?'<div class="ayah-es">'+tr+'</div>':'')
+      +'</div>';
+  }).join('');
+  document.getElementById('r-body').innerHTML=html||'<div style="padding:40px;text-align:center;color:var(--text3)">Sin contenido disponible.</div>';
+  aplicarTab();
+}
+
+function cerrarReader(){
+  document.getElementById('reader').classList.remove('open');
+  document.body.style.overflow='';
+}
+
+function setTab(t){
+  readerTab=t;
+  ['both','ar','es'].forEach(function(x){
+    document.getElementById('tab-'+x).classList.toggle('on',x===t);
+  });
+  aplicarTab();
+}
+
+function aplicarTab(){
+  var rows=document.querySelectorAll('.ayah-row');
+  rows.forEach(function(row){
+    var arEl=row.querySelector('.ayah-ar');
+    var esEl=row.querySelector('.ayah-es');
+    if(arEl) arEl.style.display=(readerTab==='es')?'none':'';
+    if(esEl) esEl.style.display=(readerTab==='ar')?'none':'';
+  });
+}
+
+// Close reader on ESC
+document.addEventListener('keydown',function(e){if(e.key==='Escape') cerrarReader();});
+document.getElementById('reader').addEventListener('click',function(e){if(e.target===this) cerrarReader();});
+
+// ── AYAH ──
+function renderAyah(){
+  var a=AYAHS[ayahIdx];
+  document.getElementById('a-arabic').textContent=a.ar;
+  document.getElementById('a-tr-es').textContent='"'+a.tr+'"';
+  document.getElementById('a-tr-ar').textContent='"'+a.tr+'"';
+  document.getElementById('a-ref-es').textContent=a.ref_es;
+  document.getElementById('a-ref-ar').textContent=a.ref_ar;
+  document.getElementById('dots').innerHTML=AYAHS.map(function(_,i){
+    return '<div class="dot'+(i===ayahIdx?' on':'')+'" onclick="goAyah('+i+')"></div>';
+  }).join('');
+}
+function goAyah(i){ayahIdx=i;renderAyah();}
+setInterval(function(){ayahIdx=(ayahIdx+1)%AYAHS.length;renderAyah();},7000);
+
+// ── TEMAS ──
+function renderTemas(){
+  document.getElementById('grid-temas').innerHTML=TEMAS.map(function(t){
+    var tit=lang==='ar'?t.ar:t.es;
+    var sub=lang==='ar'?t.es:t.ar;
+    var cnt=lang==='ar'?(t.n+' آية'):(t.n+' versículos');
+    return '<div class="tema">'
+      +'<span class="tema-ico">'+t.i+'</span>'
+      +'<div class="tema-tit">'+tit+'</div>'
+      +'<div class="tema-ar">'+sub+'</div>'
+      +'<div class="tema-cnt">'+cnt+'</div>'
+      +'</div>';
+  }).join('');
+}
+
+// ── INIT — ejecutar directo sin window.onload ──
+renderSuras(SURAS);
+renderAyah();
+renderTemas();
+</script>
+</body>
+</html>
